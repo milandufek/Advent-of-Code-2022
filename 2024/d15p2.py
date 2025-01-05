@@ -71,11 +71,9 @@ def solve(input_file: str) -> int:
                 can_move = False
                 break
             if tile == '[':
-                movable.append((nr, nc))
-                movable.append((nr, nc + 1))
+                movable.extend([(nr, nc), (nr, nc + 1)])
             elif tile == ']':
-                movable.append((nr, nc))
-                movable.append((nr, nc - 1))
+                movable.extend([(nr, nc), (nr, nc - 1)])
 
         if can_move:
             key = lambda x: (-1 if sum([dr, dc]) == 1 else 1) * x[abs(dc)]
@@ -86,6 +84,8 @@ def solve(input_file: str) -> int:
 
     return get_score(grid)
 
-# input_file = 'inputs/test.txt'
-input_file = 'inputs/15.txt'
-print('#2:', solve(input_file))
+
+if __name__ == '__main__':
+    # input_file = 'inputs/test.txt'
+    input_file = 'inputs/15.txt'
+    print('#2:', solve(input_file))
